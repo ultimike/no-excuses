@@ -19,7 +19,7 @@ echo "Symlink settings.php into our Drupal."
 ln -sf $base/cnf/settings.php $base/www/sites/default/
 echo "Installing Drupal like a boss."
 $drush si --site-name=no-excuses --account-pass=admin
-echo "Installing and enabling commonly used modules.
+echo "Installing and enabling commonly used modules."
 $drush dl admin_menu module_filter
 $drush dis toolbar
 $drush en admin_menu admin_menu_toolbar module_filter
