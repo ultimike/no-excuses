@@ -1,0 +1,35 @@
+{
+    "name": "mike/no-excuses",
+    "description": "Project for no-excuses",
+    "type": "project",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Michael Anello",
+            "email": "michael@anelloconsulting.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://packagist.drupal-composer.org/"
+        }
+    ],
+    "require": {
+        "drupal/drupal": "7.38",
+        "drupal/features": "~7.2",
+        "craychee/rootcanal": "dev-master"
+    }
+    "config": {
+        "bin-dir": "bin"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "bin/rootcanal"
+        ],
+        "post-update-cmd": [
+            "bin/rootcanal"
+        ]
+    }
+}
