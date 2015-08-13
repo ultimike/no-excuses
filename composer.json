@@ -20,7 +20,7 @@
         "drupal/drupal": "7.38",
         "drupal/features": "~7.2",
         "craychee/rootcanal": "dev-master"
-    }
+    },
     "config": {
         "bin-dir": "bin"
     },
