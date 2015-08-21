@@ -23,3 +23,4 @@ echo "Installing and enabling commonly used modules."
 $drush dl admin_menu module_filter
 $drush dis toolbar
 $drush en admin_menu admin_menu_toolbar module_filter
+$drush en fpa
