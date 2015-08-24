@@ -1,6 +1,7 @@
 settings.php
-.vagrant
+.vagrant/
 .DS_Store
 vendor
 www
 bin
+!bin/deploy
