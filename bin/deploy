@@ -24,7 +24,7 @@ base=$(cd $path/.. && pwd)
 pantheon=$base/pantheon
 git="( $base/pantheon && git $git_flags)"
 
-# Build the deployment artifact.
+# Build the deployment artifact...
 sudo rm -f $base/cnf/settings.php
 mv $base/cnf/pantheon.settings.php $base/cnf/settings.php
 
