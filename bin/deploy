@@ -1,22 +1,15 @@
 #!/bin/bash
 
 set -e
-
 # Get Pantheon's Command Line Tool, terminus.
-sudo curl https://github.com/pantheon-systems/cli/releases/download/0.5.5/terminus.phar -L -o /usr/local/bin/terminus && sudo chmod +x /usr/local/bin/terminus
+sudo curl https://github.com/pantheon-systems/cli/releases/download/0.8.1/terminus.phar -L -o /usr/local/bin/terminus
+sudo chmod +x /usr/local/bin/terminus
 
 # Log into terminus.
 terminus auth login $PANTHEON_EMAIL --password=$PANTHEON_PASSWORD
 
 # Clone deployment repository.
-expect <<delim
-  set timeout 60
-  eval spawn git clone $PANTHEON_CODE pantheon
-  set prompt ":|#|\\\$"
-  interact -o -nobuffer -re $prompt return
-  send "$PANTHEON_PASSWORD\r"
-expect eof
-delim
+git clone $PANTHEON_CODE pantheon
 
 # Set variables
 path=$(dirname "$0")
@@ -24,11 +17,10 @@ base=$(cd $path/.. && pwd)
 pantheon=$base/pantheon
 git="( $base/pantheon && git $git_flags)"
 
-# Build the deployment artifact...
-sudo rm -f $base/cnf/settings.php
+# Build the deployment artifact.
+sudo rm $base/cnf/settings.php
+sudo rm -Rf $base/www/sites/default
 mv $base/cnf/pantheon.settings.php $base/cnf/settings.php
-
-# Use this bit only if you are using my method of using Composer.
 $base/bin/rootcanal --prod
 
 # Add deployment artifact to the repository.
