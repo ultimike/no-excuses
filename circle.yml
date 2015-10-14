@@ -4,6 +4,7 @@ machine:
 
 dependencies:
   pre:
+    - composer config --global github-oauth.github.com $GITHUB_TOKEN
     - cp $HOME/$CIRCLE_PROJECT_REPONAME/cnf/circle.conf /etc/apache2/sites-available/default
     - sudo sed -e "s?%HOME%?$(pwd)?g" --in-place /etc/apache2/sites-available/default
     - sudo sed -e "s?%PROJECT_DIR%?www?g" --in-place /etc/apache2/sites-available/default
@@ -20,7 +21,7 @@ dependencies:
 test:
   override:
       - bin/behat
-      
+
 deployment:
   pantheon:
     branch: master
@@ -29,5 +30,5 @@ deployment:
       - composer install --no-dev --no-scripts
       - bin/deploy
       - mysqldump -u ubuntu circle_test > pantheon.sql
-      - terminus drush sqlc < pantheon.sql --site=de-no-excuses --env=dev
-      - terminus site clear-caches --site=de-no-excuses --env=dev
+      - terminus site clear-cache --site=mikes-out-of-excuses --env=dev
+      - terminus drush sqlc < pantheon.sql --site=mikes-out-of-excuses --env=dev
